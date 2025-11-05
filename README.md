@@ -5,12 +5,12 @@ A Flask-based microservice for dental case management with JWT authentication in
 ## Features
 
 ### Core Functionality
-- 🦷 **Dental Case Management**: Complete CRUD operations for dental cases
-- 📊 **Case Tracking**: Status management and progress tracking
-- 🔒 **JWT Authentication**: Integration with User Management Service (UMS)
-- 🏢 **Multi-Tenant Architecture**: Lab-based data isolation
-- 📝 **Swagger Documentation**: Auto-generated API documentation
-- 🛡️ **HIPAA Compliance**: Secure handling of dental health information
+-  **Dental Case Management**: Complete CRUD operations for dental cases
+-  **Case Tracking**: Status management and progress tracking
+-  **JWT Authentication**: Integration with User Management Service (UMS)
+-  **Multi-Tenant Architecture**: Lab-based data isolation
+-  **Swagger Documentation**: Auto-generated API documentation
+-  **HIPAA Compliance**: Secure handling of dental health information
 
 ### API Features
 - RESTful API design with Flask-RESTX
