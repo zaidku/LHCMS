@@ -1,0 +1,16 @@
+Flask==2.3.3
+Flask-RESTX==1.3.0
+Flask-SQLAlchemy==3.0.5
+Flask-CORS==4.0.0
+SQLAlchemy==2.0.23
+PyJWT==2.8.0
+python-dotenv==1.0.0
+requests==2.31.0
+gunicorn==21.2.0
+cryptography==41.0.7
+marshmallow==3.20.1
+
+# Database drivers (install one based on your database choice)
+# For PostgreSQL: pip install psycopg2-binary (requires PostgreSQL development libraries)
+# For SQLite: built-in with Python
+# For MySQL: pip install PyMySQL
