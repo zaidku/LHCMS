@@ -1,12 +1,12 @@
-# UMS Integration Guide for Case Management Service (CMS)
+# UMS Integration Specification
 
 ## Overview
-This document outlines the integration between the Case Management Service (CMS) and the User Management Service (UMS) for the LinksTechnologies dental laboratory system.
+Technical specification for integration between LHCMS and the User Management Service (UMS) within the LinksTechnologies dental laboratory platform.
 
-## Architecture
+## Service Architecture
 ```
 ┌────────────────────┐
-│   Client / Portal  │
+│   Client Portal    │
 └────────┬───────────┘
          │
    HTTPS Request
@@ -17,7 +17,7 @@ This document outlines the integration between the Case Management Service (CMS)
  └───────┬────────┘
          │
     ┌────▼────┐     ┌────▼────┐
-    │   UMS   │────▶│   CMS   │
+    │   UMS   │────▶│  LHCMS  │
     │ :5000   │     │ :5001   │
     └─────────┘     └─────────┘
 ```

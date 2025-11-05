@@ -1,46 +1,50 @@
-# Case Management Service (CMS)
+# LHCMS - Lab Healthcare Case Management System
 
-A Flask-based microservice for dental case management with JWT authentication integration and lab-based multi-tenant architecture.
+Enterprise-grade Flask microservice for dental laboratory case management with multi-tenant architecture and comprehensive security controls.
+
+## Overview
+
+LHCMS provides a complete case management solution for dental laboratories, featuring secure multi-tenant data isolation, integrated authentication, and real-time case tracking capabilities. The system is built on modern Flask architecture with enterprise-ready security and compliance features.
 
 ## Features
 
-### Core Functionality
-- 🦷 **Dental Case Management**: Complete CRUD operations for dental cases
-- 📊 **Case Tracking**: Status management and progress tracking
-- 🔒 **JWT Authentication**: Integration with User Management Service (UMS)
-- 🏢 **Multi-Tenant Architecture**: Lab-based data isolation
-- 📝 **Swagger Documentation**: Auto-generated API documentation
-- 🛡️ **HIPAA Compliance**: Secure handling of dental health information
+### Case Management
+- Complete CRUD operations for dental cases
+- Real-time case status tracking and updates
+- Patient information management with privacy controls
+- Procedure type classification and workflow management
+- Audit trail and activity logging
 
-### API Features
-- RESTful API design with Flask-RESTX
-- Comprehensive data validation
-- Error handling and logging
-- CORS support for frontend integration
-- Health check endpoints
+### Security & Compliance
+- JWT-based authentication with User Management Service integration
+- Multi-tenant lab-based data isolation
+- HIPAA-compliant data handling and storage
+- Role-based access control
+- Comprehensive audit logging
 
-### Authentication & Security
-- JWT token validation via UMS integration
-- Lab-based access control
-- Secure session management
-- Environment-based configuration
+### API & Integration
+- RESTful API with OpenAPI 3.0 specification
+- Auto-generated Swagger documentation
+- CORS support for web application integration
+- Health monitoring and status endpoints
+- Structured error handling and validation
 
-## Quick Start
+## Installation
 
-### Prerequisites
-- Python 3.8+
-- User Management Service (UMS) running on port 5000
-- Virtual environment (recommended)
+### System Requirements
+- Python 3.8 or higher
+- User Management Service (UMS) instance
+- PostgreSQL (production) or SQLite (development)
 
-### Installation
+### Setup Instructions
 
-1. **Clone and navigate to the project**:
+1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
-   cd case_service
+   git clone https://github.com/zaidku/LHCMS.git
+   cd LHCMS
    ```
 
-2. **Create and activate virtual environment**:
+2. **Create virtual environment**:
    ```bash
    python -m venv venv
    # Windows
@@ -54,22 +58,28 @@ A Flask-based microservice for dental case management with JWT authentication in
    pip install -r requirements.txt
    ```
 
-4. **Run the application**:
+4. **Configure environment**:
+   ```bash
+   cp .env.example .env
+   # Edit .env with appropriate values
+   ```
+
+5. **Start the service**:
    ```bash
    python app.py
    ```
 
-The service will start on `http://localhost:5001`
+The service runs on port 5001 by default.
 
 ### API Documentation
-Once running, access the Swagger documentation at:
+Access the interactive API documentation:
 - **Swagger UI**: http://localhost:5001/docs/
 - **API JSON**: http://localhost:5001/api/v1/swagger.json
 
 ## Configuration
 
 ### Environment Variables
-Create a `.env` file or set environment variables:
+Configure the application using environment variables in `.env` file:
 
 ```bash
 # Flask Configuration
@@ -88,15 +98,15 @@ PORT=5001
 DEBUG=true
 ```
 
-### Configuration Profiles
-- **Development**: SQLite database, debug mode enabled
-- **QA**: PostgreSQL, limited logging
-- **Production**: PostgreSQL, optimized for performance
+### Deployment Environments
+- **Development**: SQLite database with debug logging
+- **QA**: PostgreSQL with structured logging
+- **Production**: PostgreSQL with performance optimization
 
 ## API Reference
 
 ### Authentication
-All endpoints require JWT authentication via the `Authorization` header:
+All API endpoints require JWT authentication using the Authorization header:
 ```
 Authorization: Bearer <jwt_token>
 ```
@@ -143,89 +153,90 @@ curl -X POST http://localhost:5001/api/v1/cases \
 }
 ```
 
-## Integration with UMS
+## System Architecture
 
-### Architecture Overview
+### Service Integration
 ```
-[Frontend] → [CMS:5001] → [UMS:5000]
-                ↓
-           [Database]
+Frontend Application → LHCMS (Port 5001) → UMS (Port 5000)
+                              ↓
+                        Database Layer
 ```
 
 ### Authentication Flow
-1. User authenticates with UMS
-2. UMS returns JWT token
-3. Frontend sends requests to CMS with token
-4. CMS validates token with UMS
-5. CMS filters data by user's lab membership
+1. User authentication processed by UMS
+2. JWT token issued by UMS
+3. Client applications authenticate with LHCMS using JWT
+4. LHCMS validates tokens through UMS service
+5. Data access filtered by lab membership
 
-### Lab-Based Access Control
-- Users can only access cases within their assigned labs
-- Multi-lab users see aggregated data
-- Strict data isolation between labs
+### Multi-Tenant Data Isolation
+- Laboratory-based data segregation
+- Users access only assigned laboratory cases
+- Cross-laboratory data access for authorized users
+- Comprehensive audit logging for compliance
 
 ## Development
 
 ### Project Structure
 ```
-case_service/
-├── app.py                 # Main Flask application
-├── config.py             # Configuration management
-├── requirements.txt      # Python dependencies
-├── db.py                 # Database initialization
+LHCMS/
+├── app.py                    # Flask application entry point
+├── config.py                # Environment configuration management
+├── requirements.txt         # Python package dependencies
+├── db.py                    # Database connection and initialization
 ├── models/
-│   └── case.py          # Case data model
+│   └── case.py             # Case entity data model
 ├── routes/
-│   └── case_routes.py   # API route definitions
+│   └── case_routes.py      # REST API endpoint definitions
 ├── services/
-│   ├── ums_client.py    # UMS integration client
-│   └── linkshub_client.py # LinksHub integration
+│   ├── ums_client.py       # User Management Service client
+│   └── linkshub_client.py  # External service integration
 ├── utils/
-│   └── auth.py          # Authentication utilities
+│   └── auth.py             # Authentication and authorization
 └── instance/
-    └── case_service.db  # SQLite database (dev)
+    └── case_service.db     # SQLite database (development)
 ```
 
-### Running Tests
+### Testing
 ```bash
-# Integration tests
+# Integration test suite
 python integration_test.py
 
-# Test UMS connection
+# UMS connectivity verification
 python test_connection.py
 
-# API examples
+# API endpoint examples
 python api_examples.py
 ```
 
-### Development Setup
-1. Ensure UMS is running on port 5000
-2. Start CMS in development mode:
+### Development Environment
+1. Start User Management Service on port 5000
+2. Launch LHCMS in development mode:
    ```bash
    python app.py
    ```
-3. Access Swagger docs at http://localhost:5001/docs/
+3. Access API documentation at http://localhost:5001/docs/
 
 ## Deployment
 
-### Production Deployment
-1. **Environment Setup**:
+### Production Environment
+1. **Configure environment variables**:
    ```bash
    export FLASK_ENV=production
    export DATABASE_URL=postgresql://user:pass@host:port/dbname
    ```
 
-2. **Database Migration**:
+2. **Initialize database**:
    ```bash
    flask db upgrade
    ```
 
-3. **Production Server**:
+3. **Start production server**:
    ```bash
    gunicorn -w 4 -b 0.0.0.0:5001 app:app
    ```
 
-### Docker Deployment
+### Container Deployment
 ```dockerfile
 FROM python:3.11-slim
 WORKDIR /app
@@ -304,29 +315,29 @@ python app.py
 
 ## Contributing
 
-### Development Workflow
+### Development Process
 1. Fork the repository
-2. Create a feature branch
-3. Make changes with tests
-4. Submit a pull request
+2. Create feature branch from master
+3. Implement changes with appropriate tests
+4. Submit pull request with detailed description
 
 ### Code Standards
-- Follow PEP 8 style guidelines
-- Add type hints where applicable
-- Write comprehensive tests
-- Update documentation
+- PEP 8 compliance for Python code
+- Type annotations where applicable
+- Comprehensive unit and integration tests
+- Documentation updates for new features
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
 ## Support
 
-For support and questions:
-- Create an issue in the repository
-- Check the integration documentation in `UMS_INTEGRATION_GUIDE.md`
-- Review API examples in `api_examples.py`
+Technical support and documentation:
+- GitHub Issues for bug reports and feature requests
+- Integration documentation: `UMS_INTEGRATION_GUIDE.md`
+- API usage examples: `api_examples.py`
 
 ---
 
-**Note**: This service is designed to work in conjunction with the User Management Service (UMS). Ensure UMS is properly configured and running before starting the Case Management Service.
+**System Requirements**: This service requires the User Management Service (UMS) to be operational for authentication and authorization functionality.

@@ -1,13 +1,13 @@
-# Case Service API - HTTP Methods & Versioning Guide
+# LHCMS API Specification
 
-## API Versioning Strategy
+## API Versioning
 
 ### Current Version: v1.0
-- **Base URL**: `http://127.0.0.1:5000/api/v1`
-- **Documentation**: `http://127.0.0.1:5000/docs/`
-- **Status**: Active, Stable
+- **Base URL**: `http://127.0.0.1:5001/api/v1`
+- **Documentation**: `http://127.0.0.1:5001/docs/`
+- **Status**: Production Ready
 
-### Version Headers
+### Request Headers
 ```http
 Accept: application/json
 Content-Type: application/json
@@ -15,9 +15,9 @@ API-Version: 1.0
 Authorization: Bearer <jwt-token>
 ```
 
-## HTTP Methods Documentation
+## HTTP Methods Reference
 
-### GET Methods - Data Retrieval
+### GET Operations - Data Retrieval
 
 #### 1. GET /api/v1/cases/
 **Purpose**: Retrieve paginated list of cases with filtering
