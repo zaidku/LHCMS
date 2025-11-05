@@ -13,8 +13,8 @@
                                  │
                         ┌────────▼────────┐
                         │   API Gateway   │
-                        │  (Rate Limiting, │
-                        │   Validation)    │
+                        │  (Rate Limiting,│
+                        │   Validation)   │
                         └────────┬────────┘
                                  │
                         ┌────────▼────────┐
@@ -26,8 +26,8 @@
           │                      │                      │
      ┌────▼────┐        ┌────────▼────────┐    ┌────────▼────────┐
      │   UMS   │        │   PostgreSQL    │    │   Redis Cache   │
-     │(Auth/   │        │   (Primary DB)  │    │  (Sessions/     │
-     │Users)   │        │                 │    │   Cache)        │
+     │ (Auth/  │        │   (Primary DB)  │    │  (Sessions/     │
+     │ Users)  │        │                 │    │   Cache)        │
      └─────────┘        └─────────────────┘    └─────────────────┘
 ```
 
