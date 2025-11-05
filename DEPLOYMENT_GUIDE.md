@@ -5,31 +5,31 @@
 ### Infrastructure Overview
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        Production Environment                    │
+│                        Production Environment                   │
 ├─────────────────────────────────────────────────────────────────┤
-│  Load Balancer (ALB/NGINX)                                     │
-│  ├─ SSL Termination (TLS 1.3)                                  │
-│  ├─ Rate Limiting                                              │
-│  └─ Health Checks                                              │
+│  Load Balancer (ALB/NGINX)                                      │
+│  ├─ SSL Termination (TLS 1.3)                                   │
+│  ├─ Rate Limiting                                               │
+│  └─ Health Checks                                               │
 ├─────────────────────────────────────────────────────────────────┤
-│  Application Tier (Auto Scaling Group)                         │
-│  ├─ LHCMS Instance 1 (Docker Container)                       │
-│  ├─ LHCMS Instance 2 (Docker Container)                       │
-│  └─ LHCMS Instance N (Docker Container)                       │
+│  Application Tier (Auto Scaling Group)                          │
+│  ├─ LHCMS Instance 1 (Docker Container)                         │
+│  ├─ LHCMS Instance 2 (Docker Container)                         │
+│  └─ LHCMS Instance N (Docker Container)                         │
 ├─────────────────────────────────────────────────────────────────┤
-│  Cache Layer                                                   │
-│  ├─ Redis Cluster (Sessions, Cache)                           │
-│  └─ ElastiCache (Multi-AZ)                                    │
+│  Cache Layer                                                    │
+│  ├─ Redis Cluster (Sessions, Cache)                             │
+│  └─ ElastiCache (Multi-AZ)                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  Database Layer                                               │
-│  ├─ PostgreSQL Primary (RDS)                                  │
-│  ├─ PostgreSQL Read Replica                                   │
-│  └─ Automated Backups (Point-in-Time Recovery)               │
+│  Database Layer                                                 │
+│  ├─ PostgreSQL Primary (RDS)                                    │
+│  ├─ PostgreSQL Read Replica                                     │
+│  └─ Automated Backups (Point-in-Time Recovery)                  │
 ├─────────────────────────────────────────────────────────────────┤
-│  Monitoring & Logging                                         │
-│  ├─ CloudWatch/Prometheus                                     │
-│  ├─ ELK Stack (Elasticsearch, Logstash, Kibana)              │
-│  └─ APM (New Relic/DataDog)                                  │
+│  Monitoring & Logging                                           │
+│  ├─ CloudWatch/Prometheus                                       │
+│  ├─ ELK Stack (Elasticsearch, Logstash, Kibana)                 │
+│  └─ APM (New Relic/DataDog)                                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
